@@ -3,6 +3,19 @@ const app = express()
 const path = require('path')
 
 const PORT = process.env.PORT || 3500
+
+//built -in middleware to handle urlencoded data 
+//in other words, fomr data;
+// content-type : application/x-ww-form-urlencoded
+
+app.use(express.urlencoded({ extended: false }))
+
+
+// buit-in middleware for json
+app.use(express.json())
+
+//server static file
+app.use(express.static(path.join(__dirname, '/public')))
 app.get('^/$|/index(.html)?', (req, res) => {
     // res.sendFile('./views/index.html', { root: __dirname })
     res.sendFile(path.join(__dirname, 'views', 'index.html'))
